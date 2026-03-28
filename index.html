@@ -3,36 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تفعيل هديتك في Cashpub</title>
+    <title>تفعيل هديتك - Cashpub</title>
     <style>
         body { font-family: sans-serif; background: #f0f2f5; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .card { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; width: 90%; max-width: 400px; }
-        .code-box { background: #eef2ff; border: 2px dashed #1A54EF; padding: 15px; font-size: 24px; font-weight: bold; color: #1A54EF; margin: 20px 0; border-radius: 10px; cursor: pointer; }
-        .btn { background: #1A54EF; color: white; padding: 15px 30px; border: none; border-radius: 10px; font-size: 18px; cursor: pointer; width: 100%; text-decoration: none; display: inline-block; }
-        .hint { font-size: 14px; color: #666; margin-top: 15px; }
+        .card { background: white; padding: 25px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); text-align: center; width: 85%; max-width: 400px; }
+        .gift-icon { font-size: 50px; margin-bottom: 10px; }
+        .code-display { background: #fff9c4; border: 2px dashed #fbc02d; padding: 15px; font-size: 28px; font-weight: bold; color: #333; margin: 20px 0; border-radius: 10px; letter-spacing: 2px; }
+        .btn { background: #1A54EF; color: white; padding: 15px; border: none; border-radius: 10px; font-size: 18px; cursor: pointer; width: 100%; text-decoration: none; display: block; font-weight: bold; }
+        .step { font-size: 14px; color: #666; margin-top: 10px; }
     </style>
 </head>
 <body>
 
 <div class="card">
-    <h2>🎁 هديتك جاهزة!</h2>
-    <p>اضغط على الكود لنسخه ثم اضغط على الزر للتسجيل:</p>
+    <div class="gift-icon">🎁</div>
+    <h2>هديتك بانتظارك!</h2>
+    <p>استخدم هذا الكود عند التسجيل للحصول على نقاط إضافية:</p>
     
-    <div class="code-box" id="referralCode" onclick="copyCode()">51503001</div>
+    <div class="code-display" id="refCode">51503001</div>
     
-    <a href="https://www.cashpub.ma/subscribeMembreLightInitAction.do" class="btn" onclick="copyCode()">نسخ الكود وفتح الموقع</a>
+    <button class="btn" onclick="copyAndGo()">نسخ الكود والانتقال للتسجيل</button>
     
-    <p class="hint">⚠️ تأكد من لصق الكود في خانة "Referral Code" للحصول على النقاط.</p>
+    <div class="step">1. اضغط على الزر لنسخ الكود</div>
+    <div class="step">2. الصقه في خانة <b>Referral Code</b> بالموقع</div>
 </div>
 
 <script>
-    function copyCode() {
+    function copyAndGo() {
         const code = "51503001";
-        navigator.clipboard.writeText(code).then(() => {
-            alert("تم نسخ الكود بنجاح: " + code + "\nقم بلصقه في خانة Referral Code");
-        });
+        const tempInput = document.createElement("input");
+        tempInput.value = code;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand("copy");
+        document.body.removeChild(tempInput);
+        
+        alert("تم نسخ الكود: " + code + "\nقم بلصقه في خانة Referral Code عند التسجيل.");
+        
+        window.location.href = "https://www.cashpub.ma/subscribeMembreLightInitAction.do";
     }
 </script>
 
 </body>
 </html>
+
